@@ -18,7 +18,7 @@ class help(commands.Cog, name="Help"):
         if not message.author.bot:
             if message.channel.id in HELP:
                 if not message.content.lower() == "!close":
-                    occupiedcat = await nextcord.utils.get(OCCUPIED)
+                    occupiedcat = await self.client.fetch(OCCUPIED)
                     channel = message.channel
                     await channel.edit(category=occupiedcat)
     
@@ -29,12 +29,12 @@ class help(commands.Cog, name="Help"):
             if channel.category_id == DORMANT:
                 last_message = self.client.fetch_message(channel.last_message_id)
                 if nextcord.utils.utcnow() - last_message.created_at > datetime.timedelta(minutes=30):
-                    availablecat = await nextcord.utils.get(AVAILABLE)
+                    availablecat = await self.client.fetch(AVAILABLE)
                     await channel.edit(category=availablecat)
                     
     @commands.command()
     async def close(self,ctx):
-        dormantcat = await nextcord.utils.get(DORMANT)
+        dormantcat = await self.client.fetch(DORMANT)
         channel = ctx.channel
         embed = nextcord.Embed(title="Help Closed",description="The help channel has been closed.",color=nextcord.Colors.red)
         await ctx.send(embed=embed)
