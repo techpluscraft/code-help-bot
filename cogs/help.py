@@ -44,8 +44,9 @@ class help(commands.Cog, name="Help"):
         await self.client.wait_until_ready()
         print("Dormant check is starting")
                     
-    @commands.command()
+    @commands.command(name="close",description="Close the help channel.")
     async def close(self,ctx):
+        """"Close the help channel."""
         dormantcat = await self.client.fetch_channel(DORMANT)
         channel = ctx.channel
         embed = nextcord.Embed(title="Help Closed",description="The help channel has been closed.")
