@@ -67,6 +67,8 @@ class help(commands.Cog, name="Help"):
         pins = int(pins)
         rem_pin = await channel.fetch_message(pins)
         rem_author = rem_pin.author
+        guild = ctx.guild
+        await rem_author.remove_roles(guild.get_role(THREADROLE))
         await rem_pin.unpin()
 
 def setup(client):
