@@ -26,6 +26,7 @@ class help(commands.Cog, name="Help"):
                         guild = message.guild
                         await channel.edit(category=occupiedcat)
                         await message.pin()
+                        await message.channel.send(f"{message.author.mention} needs help! <@&943260696735535215>")
                         author = message.author
     
     @tasks.loop(minutes=10)
