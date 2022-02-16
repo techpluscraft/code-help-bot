@@ -6,8 +6,6 @@ AVAILABLE = 943261823153602561
 OCCUPIED = 943262546742362142
 DORMANT = 943262612639059999
 
-THREADROLE = 943317928445620264
-
 HELP = [943264593516560435,943264659383926837,943264818322899034]
 
 class help(commands.Cog, name="Help"):
@@ -29,7 +27,6 @@ class help(commands.Cog, name="Help"):
                         await channel.edit(category=occupiedcat)
                         await message.pin()
                         author = message.author
-                        await author.add_roles(guild.get_role(THREADROLE))
     
     @tasks.loop(minutes=10)
     async def dormantcheck(self):
@@ -67,8 +64,8 @@ class help(commands.Cog, name="Help"):
         pins = int(pins)
         rem_pin = await channel.fetch_message(pins)
         rem_author = rem_pin.author
+        rem_auth = await self.client.fetch_user(rem_author.id)
         guild = ctx.guild
-        await rem_author.remove_roles(guild.get_role(THREADROLE))
         await rem_pin.unpin()
 
 def setup(client):
