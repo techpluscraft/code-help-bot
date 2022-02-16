@@ -17,7 +17,7 @@ class googleit(commands.Cog, name="Google it"):
         query = parse.quote_plus(stringed_array)
 
         await ctx.send("The google tool is very powerful, see how it works!")
-        await ctx.send(f"https://letmegooglethat.com/?q={query}")
+        await ctx.send(f"<https://letmegooglethat.com/?q={query}>")
 
 def setup(client):
     client.add_cog(googleit(client))
