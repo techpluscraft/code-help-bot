@@ -25,10 +25,11 @@ class help(commands.Cog, name="Help"):
                     pins = await channel.pins()
                     pins = [pin.id for pin in pins]
                     if len(pins) < 2:
+                        guild = message.guild
                         await channel.edit(category=occupiedcat)
                         await message.pin()
                         author = message.author
-                        #await author.add_roles()
+                        await author.add_roles(guild.get_role(THREADROLE))
     
     @tasks.loop(minutes=10)
     async def dormantcheck(self):
@@ -65,6 +66,7 @@ class help(commands.Cog, name="Help"):
         pins = "".join(pins)
         pins = int(pins)
         rem_pin = await channel.fetch_message(pins)
+        rem_author = rem_pin.author
         await rem_pin.unpin()
 
 def setup(client):
