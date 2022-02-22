@@ -39,6 +39,10 @@ class help(commands.Cog, name="Help"):
                     availablecat = await self.client.fetch_channel(AVAILABLE)
                     await channel.edit(category=availablecat)
                     await channel.send("This channel has been dormant for over 30 minutes. It has been moved to the available category.")
+                    everyone = channel.guild.default_role
+                    await channel.set_permissions(everyone,send_messages=True)
+                    
+                    
                     
     @dormantcheck.before_loop
     async def beforedormantcheck(self):
@@ -68,7 +72,9 @@ class help(commands.Cog, name="Help"):
         rem_author = rem_pin.author
         rem_auth = await self.client.fetch_user(rem_author.id)
         guild = ctx.guild
+        everyone = guild.default_role
         await rem_pin.unpin()
+        await ctx.channel.set_permissions(everyone,send_messages=False)
 
 def setup(client):
     client.add_cog(help(client))
