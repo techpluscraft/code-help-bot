@@ -11,7 +11,7 @@ client.persistent_views_added = False
 @client.event
 async def on_ready():
     print("Bot is ready!")
-    client.load_extension("commands.buttons.sr_message")
+    client.load_extension("cogs.buttons.sr_message")
     if not client.persistent_views_added:
         client.add_view(SRView())
     client.persistent_views_added = True
