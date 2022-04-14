@@ -2,6 +2,7 @@ import os
 from nextcord.ext import commands
 from dotenv import load_dotenv
 from cogs.buttons.sr_view import SRView
+import nextcord, datetime
 
 load_dotenv()
 

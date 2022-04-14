@@ -13,6 +13,7 @@ class SRView(nextcord.ui.View):
         role_id=int(button.custom_id.split(":")[-1])
         role = interaction.guild.get_role(role_id)
         assert isinstance(role, nextcord.Role)
+        
         if role in interaction.user.roles:
             await interaction.user.remove_roles(role)
             await interaction.response.send_message(f"Your {role.name} role has been removed.", ephemeral=True)
@@ -23,14 +24,14 @@ class SRView(nextcord.ui.View):
     def custom_id(view: str, id: int) -> str:
         return f"{view}:{id}"
     
-    @nextcord.ui.button(label="Helpers (NOT STAFF)", style=nextcord.ButtonStyle.primary, custom_id='SRView:942882061751029780', emoji="✋")
+    @nextcord.ui.button(label="Helpers (NOT STAFF)", style=nextcord.ButtonStyle.primary, custom_id='SRView:943260696735535215', emoji="✋")
     async def HELPERS_button(self, button, interaction):
         await self.handle_click(button, interaction)
     
-    @nextcord.ui.button(label="Announcements Ping", style=nextcord.ButtonStyle.primary, custom_id='SRView:942882077303525377', emoji="📣")
+    @nextcord.ui.button(label="Announcements Ping", style=nextcord.ButtonStyle.primary, custom_id='SRView:964276690303979590', emoji="📣")
     async def ALERTS_button(self, button, interaction):
         await self.handle_click(button, interaction)
     
-    @nextcord.ui.button(label="Poll Pings", style=nextcord.ButtonStyle.primary, custom_id='SRView:949736349970358352', emoji="💡")
+    @nextcord.ui.button(label="Poll Pings", style=nextcord.ButtonStyle.primary, custom_id='SRView:964276657001226270', emoji="💡")
     async def PP_button(self, button, interaction):
         await self.handle_click(button, interaction)
